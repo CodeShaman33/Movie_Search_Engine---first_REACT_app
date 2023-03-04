@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import Card from "./Card";
 
-function App() {
+const API_URL = "https://www.omdbapi.com?apikey=20849a0e";
+
+const movie1 = {
+  Title: "Hope Springs Eternal: A Look Back at 'The Shawshank Redemption'",
+  Year: "2004",
+  imdbID: "tt0443041",
+  Type: "movie",
+  Poster: "N/A",
+};
+
+
+
+const App = () => {
+  const searchMovies = async (title) => {
+    const response = await fetch(`${API_URL}&s=${title}`);
+    const data = await response.json();
+
+    console.log(data);
+  };
+
+  useEffect(() => {
+    searchMovies("The Shawshank Redemption");
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>Movies We Love</h1>
+
+        <div className="search">
+          <input type="text"
+          placeholder="search movie "
+           />
+           <button>Search</button>
+        </div>
+
+        <div className="container" >
+          <Card movie={movie1}/>
+        </div>
     </div>
   );
-}
+};
 
 export default App;
