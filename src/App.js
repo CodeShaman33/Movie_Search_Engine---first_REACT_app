@@ -18,6 +18,8 @@ const App = () => {
   useEffect(() => {
     searchMovies("SEX");
   }, []);
+  
+
 
   return (
     <div className="App">
@@ -25,10 +27,11 @@ const App = () => {
 
       <div className="search">
         <input type="text"
+        id="input"
          placeholder="search movie "
          value={searchTerm}
          onChange = {(e) => setSearchTerm(e.target.value)} />
-        <button onClick={() => searchMovies(searchTerm)}>Search</button>
+        <button id="search" onClick={() => searchMovies(searchTerm)}>Search</button>
       </div>
 
       <div className="container">
